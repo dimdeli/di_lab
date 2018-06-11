@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviesHub", "MoviesHub\MoviesHub.csproj", "{65444552-43B9-4F76-8695-1DD32741512D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{11673CA3-F5F6-489B-A1B9-FFE4D43F89A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{65444552-43B9-4F76-8695-1DD32741512D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65444552-43B9-4F76-8695-1DD32741512D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65444552-43B9-4F76-8695-1DD32741512D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11673CA3-F5F6-489B-A1B9-FFE4D43F89A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11673CA3-F5F6-489B-A1B9-FFE4D43F89A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11673CA3-F5F6-489B-A1B9-FFE4D43F89A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11673CA3-F5F6-489B-A1B9-FFE4D43F89A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

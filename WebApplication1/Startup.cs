@@ -7,13 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MoviesHub.Models;
-using MoviesHub.Models.Interfaces;
+using WebApplication1.Models;
 
-namespace MoviesHub
+namespace WebApplication1
 {
     public class Startup
     {
@@ -34,12 +32,7 @@ namespace MoviesHub
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var connection = @"Server=localhost,1433;Database=MoviesMvc;Persist Security Info=True;uid=sa;pwd=D1m1tr1s!;ConnectRetryCount=0"; 
-
-            services.AddDbContext<MoviesMvcContext>(
-	            options => options.UseSqlServer(connection));
-
-            services.AddTransient<IMovieService, MovieService>();
+            services.AddTransient<ILog, ConsoleLog>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -65,7 +58,7 @@ namespace MoviesHub
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Movies}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
