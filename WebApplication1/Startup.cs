@@ -32,7 +32,8 @@ namespace WebApplication1
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddTransient<ILog, ConsoleLog>();
+            //services.AddTransient<ILog, ConsoleLog>();
+            services.AddTransient<ILog, FileLog>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

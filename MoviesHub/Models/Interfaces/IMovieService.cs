@@ -10,5 +10,9 @@ namespace MoviesHub.Models.Interfaces
         Task<IList<Movie>> GetAllAsync();
 
         Task<Movie> GetAsync(int id);
+
+        Task<IList<ContentRating>> GetContentRatingsAsync();
+
+        Task<bool> AddAsync(Movie movie);
     }
 }

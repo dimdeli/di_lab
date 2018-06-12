@@ -17,13 +17,26 @@ namespace MoviesHub.Models
         {
             context_ = context;
         }
+
+        public async Task<bool> AddAsync(Movie movie)
+        {
+            if (movie == null) {
+                return false;
+            }
+
+            context_.Add(movie);
+
+            await context_.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<IList<Movie>> GetAllAsync()
         {
             var movies = await context_.Movie.ToListAsync();
 
             return movies;
         }
-
 
         public async Task<Movie> GetAsync(int id)
         {
@@ -32,6 +45,13 @@ namespace MoviesHub.Models
                 .SingleOrDefaultAsync(m => m.MovieId == id);
 
             return movie;
+        }
+
+        public async Task<IList<ContentRating>> GetContentRatingsAsync()
+        {
+            var contentRatings = await context_.ContentRating.ToListAsync();
+
+            return contentRatings;
         }
     }
 }
