@@ -8,20 +8,22 @@ namespace XUnitTestProject1
 {
     public class Movies_IntegrationTests
     {
+        private readonly HttpClient client_;
+        private readonly TestServer testServer_;
+
+        public Movies_IntegrationTests()
+        {
+            var webHostBuilder = new WebHostBuilder()
+                .UseStartup<MoviesHubNew.Startup>();
+
+            testServer_ = new TestServer(webHostBuilder);
+            client_ = testServer_.CreateClient();
+        }
+
         [Fact]
         public async Task Movies_Index()
         {
-            var builder = new WebHostBuilder()
-              .UseContentRoot(
-                      @"C:\github\dimdeli\di_lab\MoviesHubNew")
-              .UseEnvironment("Development")
-              .UseStartup<MoviesHubNew.Startup>();
-
-            TestServer testServer = new TestServer(builder);
-
-            HttpClient client = testServer.CreateClient();
-
-            HttpResponseMessage response = await client.GetAsync("/Movies");
+            HttpResponseMessage response = await client_.GetAsync("/Movies");
 
             // Assert on correct content
             Assert.True(response.IsSuccessStatusCode);
