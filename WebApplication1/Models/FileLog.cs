@@ -9,7 +9,7 @@ namespace WebApplication1.Models
     {
         public void Info(string str)
         {
-            var line = new List<string>() { str };
+            var line = new List<string>() { $"[{DateTime.Now}]: {str}" };
 
             System.IO.File.AppendAllLines("log.txt", line);
         }

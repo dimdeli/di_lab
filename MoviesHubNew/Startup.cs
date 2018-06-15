@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Context;
+using Domain.Interfaces;
+using Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebApplication1.Models;
 
-namespace WebApplication1
+namespace MoviesHubNew
 {
     public class Startup
     {
@@ -32,8 +35,12 @@ namespace WebApplication1
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddTransient<ILog, ConsoleLog>();
-            //services.AddTransient<ILog, FileLog>();
+            var connection = @"Server=localhost,1433;Database=MoviesMvc;Persist Security Info=True;uid=sa;pwd=D1m1tr1s!;ConnectRetryCount=0";
+
+            services.AddDbContext<MoviesMvcContext>(
+                options => options.UseSqlServer(connection));
+
+            services.AddTransient<IMovieService, MovieService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -59,7 +66,7 @@ namespace WebApplication1
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Movies}/{action=Index}/{id?}");
             });
         }
     }

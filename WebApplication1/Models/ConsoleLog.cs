@@ -9,7 +9,7 @@ namespace WebApplication1.Models
     {
         public void Info(string str)
         {
-            Console.WriteLine(str);
+            Console.WriteLine($"[{DateTime.Now}]: {str}");
         }
     }
 }
