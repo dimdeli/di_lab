@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Revenue)
+                @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PosterUrl)
@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Revenue)
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PosterUrl)
@@ -67,9 +67,9 @@
                 @Html.DisplayFor(modelItem => item.ContentRating.ShortDescription)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MovieId">Edit</a> |
+                @*<a asp-action="Edit" asp-route-id="@item.MovieId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.MovieId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>*@
             </td>
         </tr>
 }

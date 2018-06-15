@@ -5,6 +5,11 @@ namespace XUnitTestProject1
 {
     public class Person_UnitTests
     {
+        public Person_UnitTests()
+        {
+            var test = "initialize...";
+        }
+
         [Fact]
         public void GetFullName()
         {

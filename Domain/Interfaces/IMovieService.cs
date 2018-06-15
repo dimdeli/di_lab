@@ -11,7 +11,7 @@ namespace Domain.Interfaces
     {
         Task<IList<Movie>> GetAllAsync();
 
-        Task<Movie> GetAsync(int id);
+        Task<Movie> GetAsync(int id, string code = null);
 
         Task<IList<ContentRating>> GetContentRatingsAsync();
 

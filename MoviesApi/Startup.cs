@@ -7,14 +7,15 @@ using Domain.Interfaces;
 using Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
-namespace MoviesHubNew
+namespace MoviesApi
 {
     public class Startup
     {
@@ -28,13 +29,6 @@ namespace MoviesHubNew
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
             var connection = @"Server=localhost,1433;Database=MoviesMvc;Persist Security Info=True;uid=sa;pwd=D1m1tr1s!;ConnectRetryCount=0";
 
             services.AddDbContext<MoviesMvcContext>(
@@ -55,20 +49,11 @@ namespace MoviesHubNew
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Movies}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace MoviesHubNew.Controllers
             movieService_ = movieService;
         }
 
-        // GET: Movies
+        // GET:
         public async Task<IActionResult> Index()
         {
             var movies = await movieService_.GetAllAsync();
@@ -24,51 +24,22 @@ namespace MoviesHubNew.Controllers
             return View(movies);
         }
 
-        // GET: Movies/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Movies/Details/5?code=
+        public async Task<IActionResult> Details(int? id, string code)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var movie = await movieService_.GetAsync(id.Value);
+            var movie = await movieService_.GetAsync(id.Value, code);
 
             if (movie == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
-        }
 
-
-        // GET: Movies/Create
-        public async Task<IActionResult> Create()
-        {
-            var contentRatings = await movieService_.GetContentRatingsAsync();
-
-            ViewData["ContentRatingId"] = new SelectList(contentRatings, "ContentRatingId", "ShortDescription");
-
-            return View();
-        }
-
-        // POST: Movies/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MovieId,Title,Revenue,PosterUrl,VideoUrl,VideoPosterUrl,Summary,ReleaseDate,ContentRatingId")] Movie movie)
-        {
-            if (ModelState.IsValid) {
-                await movieService_.AddAsync(movie);
-
-                return RedirectToAction(nameof(Index));
-            }
-
-            var contentRatings = await movieService_.GetContentRatingsAsync();
-
-            ViewData["ContentRatingId"] = new SelectList(contentRatings, "ContentRatingId", "ShortDescription", movie.ContentRatingId);
 
             return View(movie);
         }

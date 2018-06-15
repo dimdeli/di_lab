@@ -60,7 +60,7 @@ namespace MoviesHub.Models
 
                 entity.Property(e => e.ReleaseDate).HasColumnType("date");
 
-                entity.Property(e => e.Revenue).HasColumnType("decimal(14, 2)");
+                entity.Property(e => e.Price).HasColumnType("decimal(14, 2)");
 
                 entity.Property(e => e.Summary).HasMaxLength(1024);
 

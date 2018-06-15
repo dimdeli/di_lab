@@ -13,10 +13,12 @@ namespace Domain.Services
     public class MovieService : IMovieService
     {
         private readonly MoviesMvcContext context_;
+        private readonly IPricingService pricing_;
 
-        public MovieService(MoviesMvcContext context)
+        public MovieService(MoviesMvcContext context, IPricingService pricing)
         {
             context_ = context;
+            pricing_ = pricing;
         }
 
         public async Task<bool> AddAsync(Movie movie)
@@ -39,11 +41,18 @@ namespace Domain.Services
             return movies;
         }
 
-        public async Task<Movie> GetAsync(int id)
+        public async Task<Movie> GetAsync(int id, string code = null)
         {
             var movie = await context_.Movie
-                .Include(m => m.ContentRating)
                 .SingleOrDefaultAsync(m => m.MovieId == id);
+
+            if (movie == null) {
+                return null;
+            }
+
+            var discount = pricing_.DiscountPercentage(code);
+
+            movie.Price -= movie.Price * (discount / 100);
 
             return movie;
         }
