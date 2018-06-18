@@ -28,5 +28,13 @@ namespace XUnitTestProject1
             // Assert on correct content
             Assert.True(response.IsSuccessStatusCode);
         }
+
+        [Theory]
+        [InlineData("Index")]
+        [InlineData("About")]
+        public async Task Home(string path)
+        {
+            HttpResponseMessage response = await client_.GetAsync($"/Home/{path}");
+        }
     }
 }

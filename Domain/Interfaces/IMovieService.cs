@@ -13,8 +13,6 @@ namespace Domain.Interfaces
 
         Task<Movie> GetAsync(int id, string code = null);
 
-        Task<IList<ContentRating>> GetContentRatingsAsync();
-
         Task<bool> AddAsync(Movie movie);
     }
 }

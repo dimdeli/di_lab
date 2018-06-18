@@ -39,8 +39,6 @@ namespace MoviesHubNew.Controllers
                 return NotFound();
             }
 
-
-
             return View(movie);
         }
     }
