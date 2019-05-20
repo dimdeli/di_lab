@@ -29,7 +29,7 @@ namespace MoviesApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=localhost,1433;Database=Movies;Persist Security Info=True;uid=sa;pwd=D1m1tr1s!;ConnectRetryCount=0";
+            var connection = @"Server=(LocalDb)\MSSQLLocalDB;Database=Movies;Persist Security Info=True";
 
             services.AddDbContext<MoviesContext>(
                 options => options.UseSqlServer(connection));

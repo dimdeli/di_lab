@@ -32,7 +32,7 @@ namespace XUnitTestProject1
 
         public MyFixture5()
         {
-            var connection = @"Server=localhost,1433;Database=Movies;Persist Security Info=True;uid=sa;pwd=D1m1tr1s!;ConnectRetryCount=0";
+            var connection = @"Server=(LocalDb)\MSSQLLocalDB;Database=Movies;Persist Security Info=True";
 
             container_ = new ServiceCollection()
                 .AddDbContext<MoviesContext>(options =>
